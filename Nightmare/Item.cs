@@ -1,9 +1,12 @@
 ﻿namespace Nightmare {
-    /// <summary>
-    /// Базовый класс для всех предметов в игре
-    /// </summary>
     public abstract class Item {
+        /// <summary>
+        /// Name of the item
+        /// </summary>
         public string Name;
+        /// <summary>
+        /// The type of the item
+        /// </summary>
         public string Type;
     }
 }

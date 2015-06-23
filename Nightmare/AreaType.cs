@@ -1,28 +1,15 @@
 ﻿namespace Nightmare {
-    /// <summary>
-    /// Тип области куда попадает игрок, в зависимости от этого доступны разные действия, 
-    /// накладываются бонусы и штрафы. Область может быть только одного из перечисленных типов.
-    /// </summary>
+    // AreaType
     public enum AreaType {
-        /// <summary>
-        /// Арена
-        /// </summary>
+        // Arena
         Arena,
-        /// <summary>
-        /// Перекресток
-        /// </summary>
+        // Crossroad
         Crossroad,
-        /// <summary>
-        /// Квестовая зона 
-        /// </summary>
+        // Quest
         Quest,
-        /// <summary>
-        /// Рынок
-        /// </summary>
+        // Market
         Market,
-        /// <summary>
-        /// Дорога
-        /// </summary>
+        // Road
         Road
     }
 }

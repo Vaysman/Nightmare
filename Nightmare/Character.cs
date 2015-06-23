@@ -2,36 +2,30 @@
 using System.Linq;
 
 namespace Nightmare {
-    /// <summary>
-    /// Описание персонажа и все связанные с ним действия: 
-    /// броски кубиков, рассчет атаки и так далее.
-    /// Работа с инвентарем.
-    /// </summary>
     public class Character {
         public List<Item> Bag = new List<Item>();
+        /// <summary>
+        /// The player
+        /// </summary>
         public Player Player { get; set; }
-
+        /// <summary>
+        /// The Level of player
+        /// </summary>
         public decimal Level { get; set; }
+        /// <summary>
+        /// Current experience
+        /// </summary>
         public decimal Xp { get; set; }
 
         public Character() {
             Level = 1;
         }
 
-        /// <summary>
-        /// Вывод значения кубиков, брошеных игроком
-        /// </summary>
-        /// <param name="dices"></param>
-        /// <returns></returns>
-        public string GetDices(List<int> dices) {
+        public string PrintDices(List<int> dices) {
             return string.Join(":", dices);
         }
 
-        /// <summary>
-        /// Рассчет атак (сила и защита) на основе одетой одежды, оружия\щитов
-        /// </summary>
-        /// <returns></returns>
-        public List<Attack> GetAttacks() {
+        public List<Attack> Attack() {
             var weapons = new List<Weapon>();
             var shields = new List<Shield>();
             var wears = new List<Wear>();
@@ -60,7 +54,7 @@ namespace Nightmare {
 
             var attack = new Attack {
                 // power consist of a number different variable and parameters. The main of them and the basement is 
-                // the GetAttacks parameter. Then it should be summarized with bonus power depends on level.
+                // the Attack parameter. Then it should be summarized with bonus power depends on level.
                 // Finally it adds attack abilities from wears. 
                 Power = (int) (weapons.Sum(i => i.Attack) + weapons.Sum(i => i.Attack)*Level*0.5m + wears.Sum(i => i.Attack) + wears.Sum(i => i.Attack)*Level*0.2m),
                 Defence = (int) (shields.Sum(i => i.Defence) + shields.Sum(i => i.Defence)*Level*0.5m + wears.Sum(i => i.Defence) + wears.Sum(i => i.Defence)*Level*0.2m),
@@ -70,11 +64,6 @@ namespace Nightmare {
             return new List<Attack> {attack};
         }
 
-        /// <summary>
-        /// Определение можно ли использовать оружие персонажу
-        /// если можно, то использует
-        /// </summary>
-        /// <param name="weapon"></param>
         public void Equip(Weapon weapon) {
             var result = weapon.CanWearFor(Player);
             if (result) {
@@ -82,27 +71,15 @@ namespace Nightmare {
             }
         }
 
-        /// <summary>
-        /// Пополнение жизни персонажу
-        /// </summary>
-        /// <param name="character"></param>
+        // Fill Life
         public void FillLife(Character character) {
             character.Player.Life = character.Player.MaxLife;
         }
 
-        /// <summary>
-        /// Пополнение выносливости персонажу
-        /// </summary>
-        /// <param name="character"></param>
         public void FillStamina(Character character) {
             character.Player.Stamina = character.Player.MaxStamina;
         }
 
-        /// <summary>
-        /// Определение можно ли использовать одежу персонажу
-        /// если можно, то использует
-        /// </summary>
-        /// <param name="wear"></param>
         public void Equip(Wear wear) {
             var result = wear.CanWearFor(Player);
             if (result) {
@@ -110,11 +87,6 @@ namespace Nightmare {
             }
         }
 
-        /// <summary>
-        /// Определение можно ли использовать щит персонажу
-        /// если можно, то использует
-        /// </summary>
-        /// <param name="shield"></param>
         public void Equip(Shield shield) {
             var result = shield.CanWearFor(Player);
             if (result) {

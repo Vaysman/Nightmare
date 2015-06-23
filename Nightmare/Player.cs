@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
 
 namespace Nightmare {
-    /// <summary>
-    /// Персонаж игрока 
-    /// </summary>
     public class Player : Users {
-        // базовые значения свойств в зависимости от класса
         public Dictionary<string, List<int>> classes = new Dictionary<string, List<int>> {
             {"Warrior", new List<int>   {8, 6, 7, 9, 7, 9, 8}},
             {"Paladin", new List<int>   {9, 5, 8, 11, 5, 6, 2}},
@@ -14,7 +10,6 @@ namespace Nightmare {
             {"Barbarian", new List<int> {11, 5, 6, 3, 5, 6, 5}}
         };
 
-        // базовые значения модификаторов для жизни и выносливости
         public Dictionary<string, List<decimal>> life = new Dictionary<string, List<decimal>> {
             {"Warrior", new List<decimal> {1, 1}},
             {"Paladin", new List<decimal> {1, 1.2m}},
@@ -23,16 +18,13 @@ namespace Nightmare {
             {"Barbarian", new List<decimal> {1.5m, 0.9m}}
         };
 
-        // занчения свойств силы, выносливости и так далее
         public List<int> Stats;
         public int Life;
         public int Stamina;
-
-        // класс персонажа
         public string Class;
         public int LevelPoints  { get; set; }
         public int MaxLife { get; set; }
-        public int MaxStamina { get;  set; }
+        public int MaxStamina { get; set; }
 
 
         // Set player class 
